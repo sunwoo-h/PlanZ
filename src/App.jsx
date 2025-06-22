@@ -4,7 +4,6 @@ import "./App.css";
 function App() {
   return (
     <div>
-      안뇽
       <Outlet />
     </div>
   );
