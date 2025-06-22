@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.div`
-  border: solid 1px black;
   background-color: ${({ color }) =>
     color === "white" ? "#fff" : color === "black" ? "#000" : "#ccc"};
   color: ${({ color }) =>
