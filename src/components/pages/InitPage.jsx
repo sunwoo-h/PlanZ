@@ -4,7 +4,8 @@ import styled from "styled-components";
 import logo from "../../assets/PlanZLogo.png";
 
 const MainContainer = styled.div`
-  margin: 200px auto;
+  margin: auto;
+  padding: 200px 0px;
 `;
 
 const SubContainer = styled.div`
