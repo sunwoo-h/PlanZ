@@ -5,7 +5,7 @@ import logo from "../../assets/PlanZLogo.png";
 
 const MainContainer = styled.div`
   margin: auto;
-  padding: 25vh 0px;
+  padding: 15vh 0px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -40,6 +40,7 @@ const InputBox = styled.input`
   padding: 14px 15px;
   border-radius: 10px;
   box-sizing: border-box;
+  outline: none;
 `;
 
 const ButtonWrapper = styled.div`
