@@ -3,6 +3,13 @@ import logo from "../../assets/PlanZlogo.png";
 import styled from "styled-components";
 import Button from "../ui/Button";
 
+const MainContainer = styled.div`
+  margin: auto;
+  padding: 10vh 0px;
+  display: flex;
+  justify-content: center;
+`;
+
 const Row = styled.div`
   display: flex;
 `;
@@ -23,7 +30,7 @@ const GlassCard = styled.div`
   background-image: linear-gradient(
     to bottom right,
     rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 50%,
     rgba(255, 255, 255, 0.7) 100%
   );
 `;
@@ -70,59 +77,69 @@ const BigNumber = styled.div`
 const MainPage = () => {
   return (
     <div>
-      <Row style={{ justifyContent: "space-between" }}>
-        <img style={{ width: "100px" }} src={logo} alt="PlanZ 로고" />
-        <div>UserID님 안녕하세요!</div>
-      </Row>
-      <Row style={{ gap: "40px" }}>
+      <MainContainer>
         <Column>
-          <GlassCard>달력</GlassCard>
+          <Row style={{ justifyContent: "space-between" }}>
+            <img style={{ width: "100px" }} src={logo} alt="PlanZ 로고" />
+            <div>UserID님 안녕하세요!</div>
+          </Row>
+          <Row
+            style={{
+              gap: "40px",
+            }}
+          >
+            <Column>
+              <GlassCard style={{ textAlign: "center" }}>
+                달력들어갈예정
+              </GlassCard>
 
-          <GlassCard>
-            <InputBox placeholder="할일을 추가해보세요" />
-            <Button title={"추가하기"} color={"black"} />
-          </GlassCard>
-        </Column>
-        <Column>
-          <GlassCard>
-            2032년 9월 9일의 투두리스트
-            <TodoBox>
-              <Row
-                style={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                투두리스트1
-                <Row style={{ gap: "10px" }}>
-                  <StyledButton color="black">완료</StyledButton>
-                  <StyledButton color="white">삭제</StyledButton>
-                </Row>
+              <GlassCard>
+                <InputBox placeholder="할일을 추가해보세요" />
+                <Button title={"추가하기"} color={"black"} />
+              </GlassCard>
+            </Column>
+            <Column>
+              <GlassCard>
+                2032년 9월 9일의 투두리스트
+                <TodoBox>
+                  <Row
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    투두리스트1
+                    <Row style={{ gap: "10px" }}>
+                      <StyledButton color="black">완료</StyledButton>
+                      <StyledButton color="white">삭제</StyledButton>
+                    </Row>
+                  </Row>
+                </TodoBox>
+              </GlassCard>
+              <Row style={{ gap: "20px" }}>
+                <GlassCard>
+                  <div style={{ textAlign: "center", fontWeight: "bold" }}>
+                    남은 할 일
+                  </div>
+                  <BigNumber>5</BigNumber>
+                </GlassCard>
+                <GlassCard>
+                  <div style={{ textAlign: "center", fontWeight: "bold" }}>
+                    완료된 할 일
+                  </div>
+                  <BigNumber>5</BigNumber>
+                </GlassCard>
+                <GlassCard>
+                  <div style={{ textAlign: "center", fontWeight: "bold" }}>
+                    목표 달성률
+                  </div>
+                  <BigNumber>100%</BigNumber>
+                </GlassCard>
               </Row>
-            </TodoBox>
-          </GlassCard>
-          <Row style={{ gap: "20px" }}>
-            <GlassCard>
-              <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                남은 할 일
-              </div>
-              <BigNumber>5</BigNumber>
-            </GlassCard>
-            <GlassCard>
-              <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                완료된 할 일
-              </div>
-              <BigNumber>5</BigNumber>
-            </GlassCard>
-            <GlassCard>
-              <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                목표 달성률
-              </div>
-              <BigNumber>100%</BigNumber>
-            </GlassCard>
+            </Column>
           </Row>
         </Column>
-      </Row>
+      </MainContainer>
     </div>
   );
 };
