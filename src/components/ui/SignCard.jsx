@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../ui/Button";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MainContainer = styled.div`
@@ -46,8 +45,13 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
 `;
 
-const SignCard = ({ title, blackmention, whitemention }) => {
-  const nav = useNavigate();
+const SignCard = ({
+  title,
+  BlackMention,
+  WhiteMention,
+  onBlackClick,
+  onWhiteClick,
+}) => {
   return (
     <div>
       <MainContainer>
@@ -61,17 +65,13 @@ const SignCard = ({ title, blackmention, whitemention }) => {
           </InputWrapper>
           <ButtonWrapper>
             <Button
-              onClick={() => {
-                nav("/signIn");
-              }}
-              title={blackmention}
+              onClick={onBlackClick}
+              title={BlackMention}
               color={"black"}
             />
             <Button
-              onClick={() => {
-                nav("/signUp");
-              }}
-              title={whitemention}
+              onClick={onWhiteClick}
+              title={WhiteMention}
               color={"white"}
             />
           </ButtonWrapper>
