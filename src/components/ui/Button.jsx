@@ -14,8 +14,12 @@ const StyledButton = styled.div`
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 `;
 
-const Button = ({ title, color }) => {
-  return <StyledButton color={color}>{title}</StyledButton>;
+const Button = ({ onClick, title, color }) => {
+  return (
+    <StyledButton onClick={onClick} color={color}>
+      {title}
+    </StyledButton>
+  );
 };
 
 export default Button;

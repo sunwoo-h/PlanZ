@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../ui/Button";
 import styled from "styled-components";
 import logo from "../../assets/PlanZLogo.png";
+import { useNavigate } from "react-router-dom";
 
 const MainContainer = styled.div`
   margin: auto;
@@ -23,6 +24,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const InitPage = () => {
+  const nav = useNavigate();
   return (
     <div>
       <MainContainer>
@@ -32,8 +34,20 @@ const InitPage = () => {
             나만의 일정 관리 서비스
           </div>
           <ButtonWrapper>
-            <Button title={"로그인"} color={"black"} />
-            <Button title={"회원가입"} color={"white"} />
+            <Button
+              onClick={() => {
+                nav("/signIn");
+              }}
+              title={"로그인"}
+              color={"black"}
+            />
+            <Button
+              onClick={() => {
+                nav("/signUp");
+              }}
+              title={"회원가입"}
+              color={"white"}
+            />
           </ButtonWrapper>
         </SubContainer>
       </MainContainer>
