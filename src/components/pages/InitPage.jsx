@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const MainContainer = styled.div`
   margin: auto;
-  padding: 200px 0px;
+  padding: 25vh 0px;
 `;
 
 const SubContainer = styled.div`
