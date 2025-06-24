@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 const SignInPage = () => {
   const nav = useNavigate();
 
-  const handleSignIn = () => {};
+  const handleSignIn = () => {
+    nav("/main");
+  };
 
   const moveSignUpPage = () => {
     nav("/signUp");

@@ -1,12 +1,15 @@
 import React from "react";
 import Button from "../ui/Button";
 import styled from "styled-components";
+import logo from "../../assets/PlanZLogo.png";
 
 const MainContainer = styled.div`
   margin: auto;
   padding: 25vh 0px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MainWrapper = styled.div`
@@ -55,6 +58,11 @@ const SignCard = ({
   return (
     <div>
       <MainContainer>
+        <img
+          style={{ width: "150px", marginBottom: "30px" }}
+          src={logo}
+          alt="PlanZ 로고"
+        />
         <MainWrapper>
           <div style={{ textAlign: "center", fontSize: "30px" }}>{title}</div>
           <InputWrapper>
