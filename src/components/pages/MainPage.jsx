@@ -3,6 +3,7 @@ import logo from "../../assets/PlanZlogo.png";
 import styled from "styled-components";
 import Button from "../ui/Button";
 import MyCalendar from "../features/MyCalendar";
+import TodoList from "../features/TodoList";
 
 const MainContainer = styled.div`
   margin: auto;
@@ -48,35 +49,25 @@ const InputBox = styled.textarea`
   box-sizing: border-box;
 `;
 
-const TodoBox = styled.div`
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
-  padding: 15px;
-  border: none;
-`;
-
-const StyledButton = styled.div`
-  background-color: ${({ color }) =>
-    color === "white" ? "#fff" : color === "black" ? "#000" : "#ccc"};
-  color: ${({ color }) =>
-    color === "white" ? "#000" : color === "black" ? "#fff" : "#ccc"};
-  border-radius: 10px;
-  cursor: pointer;
-  width: 30px;
-  padding: 5px 7px;
-  text-align: center;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-  font-size: 0.8rem;
-`;
-
 const BigNumber = styled.div`
   text-align: center;
   font-size: 70px;
 `;
 
+const mockData = [
+  { id: 1, content: "투두리스트1" },
+  { id: 2, content: "투두리스트2" },
+  { id: 3, content: "투두리스트3" },
+  { id: 4, content: "투두리스트4" },
+];
+
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
+  const [todos, setTodos] = useState(mockData);
+
+  const setTodo = () => {
+    setTodos([]);
+  };
 
   return (
     <div>
@@ -106,20 +97,7 @@ const MainPage = () => {
                 {`${date.getFullYear()}년 ${
                   date.getMonth() + 1
                 }월 ${date.getDate()}일의 TodoList`}
-                <TodoBox>
-                  <Row
-                    style={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    투두리스트1
-                    <Row style={{ gap: "10px" }}>
-                      <StyledButton color="black">완료</StyledButton>
-                      <StyledButton color="white">삭제</StyledButton>
-                    </Row>
-                  </Row>
-                </TodoBox>
+                <TodoList todos={todos} setTodo={setTodo} />
               </GlassCard>
               <Row style={{ gap: "20px" }}>
                 <GlassCard>
