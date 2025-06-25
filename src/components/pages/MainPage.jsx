@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import logo from "../../assets/PlanZlogo.png";
 import styled from "styled-components";
-import Button from "../ui/Button";
 import MyCalendar from "../features/MyCalendar";
 import TodoList from "../features/TodoList";
+import Editor from "../features/Editor";
 
 const MainContainer = styled.div`
   margin: auto;
@@ -37,36 +37,31 @@ const GlassCard = styled.div`
   );
 `;
 
-const InputBox = styled.textarea`
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
-  padding: 15px;
-  opacity: 0.8;
-  border: none;
-  outline: none;
-  resize: none;
-  box-sizing: border-box;
-`;
-
 const BigNumber = styled.div`
   text-align: center;
   font-size: 70px;
 `;
 
 const mockData = [
-  { id: 1, content: "투두리스트1" },
-  { id: 2, content: "투두리스트2" },
-  { id: 3, content: "투두리스트3" },
-  { id: 4, content: "투두리스트4" },
+  { id: 1, isdone: false, content: "투두리스트1" },
+  { id: 2, isdone: false, content: "투두리스트2" },
+  { id: 3, isdone: false, content: "투두리스트3" },
+  { id: 4, isdone: false, content: "투두리스트4" },
 ];
 
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
   const [todos, setTodos] = useState(mockData);
+  const idRef = useRef(0);
 
-  const setTodo = () => {
-    setTodos([]);
+  const onCreate = (content) => {
+    const newTodo = {
+      id: idRef.current++,
+      isdone: false,
+      content: content,
+    };
+
+    setTodos([newTodo, ...todos]);
   };
 
   return (
@@ -86,10 +81,8 @@ const MainPage = () => {
               <GlassCard style={{ textAlign: "center" }}>
                 <MyCalendar date={date} setDate={setDate} />
               </GlassCard>
-
               <GlassCard>
-                <InputBox placeholder="할일을 추가해보세요" />
-                <Button title={"추가하기"} color={"black"} />
+                <Editor onCreate={onCreate} />
               </GlassCard>
             </Column>
             <Column>
@@ -97,7 +90,7 @@ const MainPage = () => {
                 {`${date.getFullYear()}년 ${
                   date.getMonth() + 1
                 }월 ${date.getDate()}일의 TodoList`}
-                <TodoList todos={todos} setTodo={setTodo} />
+                <TodoList todos={todos} />
               </GlassCard>
               <Row style={{ gap: "20px" }}>
                 <GlassCard>
