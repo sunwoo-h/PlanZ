@@ -23,6 +23,19 @@ const Editor = ({ onCreate }) => {
     setContent(e.target.value);
   };
 
+  const onKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      if (content.trim() === "") {
+        contentRef.current.focus();
+        return;
+      } else {
+        e.preventDefault();
+        onCreate(content);
+        setContent("");
+      }
+    }
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <InputBox
@@ -30,6 +43,7 @@ const Editor = ({ onCreate }) => {
         value={content}
         onChange={onChangeContent}
         placeholder="할일을 추가해보세요!"
+        onKeyDown={onKeyDown}
       />
       <Button
         onClick={() => {
