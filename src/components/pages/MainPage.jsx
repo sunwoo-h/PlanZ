@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MyCalendar from "../features/MyCalendar";
 import TodoList from "../features/TodoList";
 import Editor from "../features/Editor";
+import Indicator from "../features/Indicator";
 
 const MainContainer = styled.div`
   margin: auto;
@@ -109,26 +110,7 @@ const MainPage = () => {
                   onDelete={onDelete}
                 />
               </GlassCard>
-              <Row style={{ gap: "20px" }}>
-                <GlassCard>
-                  <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                    남은 할 일
-                  </div>
-                  <BigNumber>5</BigNumber>
-                </GlassCard>
-                <GlassCard>
-                  <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                    완료된 할 일
-                  </div>
-                  <BigNumber>5</BigNumber>
-                </GlassCard>
-                <GlassCard>
-                  <div style={{ textAlign: "center", fontWeight: "bold" }}>
-                    목표 달성률
-                  </div>
-                  <BigNumber>100%</BigNumber>
-                </GlassCard>
-              </Row>
+              <Indicator />
             </Column>
           </Row>
         </Column>
