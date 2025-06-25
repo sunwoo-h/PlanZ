@@ -38,6 +38,7 @@ const Editor = ({ onCreate }) => {
             return;
           } else {
             onCreate(content);
+            setContent("");
           }
         }}
         title={"추가하기"}
