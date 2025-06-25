@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 
 const TodoList = ({ todos, date, onUpdate, onDelete }) => {
   const filteredTodos = todos
-    .filter((todo) => date === todo.date)
+    .filter((todo) => date === todo.date) // 선택한 date의 todo만 필터링
     .slice() // 원본 보호
     .sort((a, b) => {
       // isdone이 false인 것이 먼저 오게

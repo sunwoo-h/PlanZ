@@ -103,7 +103,7 @@ const MainPage = () => {
                   onDelete={onDelete}
                 />
               </GlassCard>
-              <Indicator todos={todos} />
+              <Indicator todos={todos} date={date} />
             </Column>
           </Row>
         </Column>
