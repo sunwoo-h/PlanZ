@@ -25,7 +25,24 @@ const BigNumber = styled.div`
   font-size: 70px;
 `;
 
-const Indicator = () => {
+const Indicator = ({ todos }) => {
+  const leftTodos = () => {
+    return todos.filter((todo) => !todo.isdone).length;
+  };
+
+  const completeTodos = () => {
+    return todos.filter((todo) => todo.isdone).length;
+  };
+
+  const achivementRate = () => {
+    const total = todos.length;
+    const completed = completeTodos();
+
+    if (total === 0) return 0;
+
+    return Math.round((completed / total) * 100);
+  };
+
   return (
     <div>
       <Row style={{ gap: "20px" }}>
@@ -33,19 +50,19 @@ const Indicator = () => {
           <div style={{ textAlign: "center", fontWeight: "bold" }}>
             남은 할 일
           </div>
-          <BigNumber>5</BigNumber>
+          <BigNumber>{leftTodos()}</BigNumber>
         </GlassCard>
         <GlassCard>
           <div style={{ textAlign: "center", fontWeight: "bold" }}>
             완료된 할 일
           </div>
-          <BigNumber>5</BigNumber>
+          <BigNumber>{completeTodos()}</BigNumber>
         </GlassCard>
         <GlassCard>
           <div style={{ textAlign: "center", fontWeight: "bold" }}>
             목표 달성률
           </div>
-          <BigNumber>100%</BigNumber>
+          <BigNumber>{achivementRate()}%</BigNumber>
         </GlassCard>
       </Row>
     </div>

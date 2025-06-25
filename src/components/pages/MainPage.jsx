@@ -43,16 +43,9 @@ const BigNumber = styled.div`
   font-size: 70px;
 `;
 
-const mockData = [
-  { id: 1, isdone: false, content: "투두리스트1" },
-  { id: 2, isdone: false, content: "투두리스트2" },
-  { id: 3, isdone: false, content: "투두리스트3" },
-  { id: 4, isdone: false, content: "투두리스트4" },
-];
-
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
-  const [todos, setTodos] = useState(mockData);
+  const [todos, setTodos] = useState([]);
   const idRef = useRef(0);
 
   const onCreate = (content) => {
@@ -110,7 +103,7 @@ const MainPage = () => {
                   onDelete={onDelete}
                 />
               </GlassCard>
-              <Indicator />
+              <Indicator todos={todos} />
             </Column>
           </Row>
         </Column>
