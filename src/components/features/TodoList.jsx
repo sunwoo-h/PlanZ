@@ -2,7 +2,14 @@ import React from "react";
 import TodoItem from "./TodoItem";
 
 const TodoList = ({ todos, date, onUpdate, onDelete }) => {
-  const filteredTodos = todos.filter((todo) => date === todo.date);
+  const filteredTodos = todos
+    .filter((todo) => date === todo.date)
+    .slice() // 원본 보호
+    .sort((a, b) => {
+      // isdone이 false인 것이 먼저 오게
+      if (a.isdone === b.isdone) return 0;
+      return a.isdone ? 1 : -1;
+    });
 
   return (
     <div
