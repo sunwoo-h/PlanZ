@@ -61,8 +61,15 @@ const MainPage = () => {
       content: content,
       date: date,
     };
-
     setTodos([newTodo, ...todos]);
+  };
+
+  const onUpdate = (targetId) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === targetId ? { ...todo, isdone: !todo.isdone } : todo
+      )
+    );
   };
 
   return (
@@ -91,7 +98,7 @@ const MainPage = () => {
                 {`${date.getFullYear()}년 ${
                   date.getMonth() + 1
                 }월 ${date.getDate()}일의 TodoList`}
-                <TodoList todos={todos} date={date} />
+                <TodoList todos={todos} date={date} onUpdate={onUpdate} />
               </GlassCard>
               <Row style={{ gap: "20px" }}>
                 <GlassCard>

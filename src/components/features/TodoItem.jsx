@@ -27,23 +27,46 @@ const SmallButton = styled.div`
   font-size: 0.8rem;
 `;
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, onUpdate }) => {
   return (
     <div>
-      <TodoBox>
-        <Row
-          style={{
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          {todo.content}
-          <Row style={{ gap: "10px" }}>
-            <SmallButton color="black">완료</SmallButton>
-            <SmallButton color="white">삭제</SmallButton>
+      {todo.isdone === false ? (
+        <TodoBox>
+          <Row
+            style={{
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            {todo.content}
+            <Row style={{ gap: "10px" }}>
+              <SmallButton
+                onClick={() => {
+                  onUpdate(todo.id);
+                }}
+                color="black"
+              >
+                완료
+              </SmallButton>
+              <SmallButton color="white">삭제</SmallButton>
+            </Row>
           </Row>
-        </Row>
-      </TodoBox>
+        </TodoBox>
+      ) : (
+        <TodoBox style={{ opacity: "0.2" }}>
+          <Row
+            style={{
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            {todo.content}
+            <Row style={{ gap: "10px" }}>
+              <SmallButton color="white">삭제</SmallButton>
+            </Row>
+          </Row>
+        </TodoBox>
+      )}
     </div>
   );
 };
