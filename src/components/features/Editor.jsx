@@ -18,12 +18,15 @@ const InputBox = styled.textarea`
 const Editor = ({ onCreate }) => {
   const [content, setContent] = useState("");
   const contentRef = useRef();
+  const isComposingRef = useRef(false); // 한글 조합 중 여부 확인
 
   const onChangeContent = (e) => {
     setContent(e.target.value);
   };
 
   const onKeyDown = (e) => {
+    if (isComposingRef.current) return; // 한글 조합 중이면 무시
+
     if (e.key === "Enter" && !e.shiftKey) {
       if (content.trim() === "") {
         contentRef.current.focus();
@@ -36,6 +39,14 @@ const Editor = ({ onCreate }) => {
     }
   };
 
+  const handleCompositionStart = () => {
+    isComposingRef.current = true;
+  };
+
+  const handleCompositionEnd = () => {
+    isComposingRef.current = false;
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <InputBox
@@ -44,6 +55,8 @@ const Editor = ({ onCreate }) => {
         onChange={onChangeContent}
         placeholder="할일을 추가해보세요!"
         onKeyDown={onKeyDown}
+        onCompositionStart={handleCompositionStart}
+        onCompositionEnd={handleCompositionEnd}
       />
       <Button
         onClick={() => {
