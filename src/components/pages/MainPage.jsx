@@ -75,6 +75,11 @@ const BigNumber = styled.div`
 `;
 
 const MainPage = () => {
+  let today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+
   return (
     <div>
       <MainContainer>
@@ -100,7 +105,7 @@ const MainPage = () => {
             </Column>
             <Column>
               <GlassCard>
-                2032년 9월 9일의 투두리스트
+                {`${year}년 ${month}월 ${date}일의 TodoList`}
                 <TodoBox>
                   <Row
                     style={{
