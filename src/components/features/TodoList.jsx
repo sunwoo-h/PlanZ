@@ -6,7 +6,7 @@ const ScrollWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-height: 35vh;
+  max-height: 30vh;
   overflow-y: auto;
   padding: 5px;
   border-radius: 10px;

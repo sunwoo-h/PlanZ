@@ -23,7 +23,7 @@ const SmallButton = styled.div`
   width: 30px;
   padding: 5px 7px;
   text-align: center;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   font-size: 0.8rem;
 `;
 
