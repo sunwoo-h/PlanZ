@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Button from "../ui/Button";
 
@@ -17,6 +17,7 @@ const InputBox = styled.textarea`
 
 const Editor = ({ onCreate }) => {
   const [content, setContent] = useState("");
+  const contentRef = useRef();
 
   const onChangeContent = (e) => {
     setContent(e.target.value);
@@ -25,13 +26,19 @@ const Editor = ({ onCreate }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <InputBox
+        ref={contentRef}
         value={content}
         onChange={onChangeContent}
         placeholder="할일을 추가해보세요!"
       />
       <Button
         onClick={() => {
-          onCreate(content);
+          if (content === "") {
+            contentRef.current.focus();
+            return;
+          } else {
+            onCreate(content);
+          }
         }}
         title={"추가하기"}
         color={"black"}
