@@ -1,12 +1,25 @@
 import React from "react";
 import Button from "../ui/Button";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import logo from "../../assets/PlanZLogo.png";
 import { useNavigate } from "react-router-dom";
+
+// 아래에서 위로 + 투명도 → 천천히 보여지게
+const slideUp = keyframes`
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
 
 const MainContainer = styled.div`
   margin: auto;
   padding: 25vh 0px;
+  animation: ${slideUp} 1s ease-out forwards;
 `;
 
 const SubContainer = styled.div`

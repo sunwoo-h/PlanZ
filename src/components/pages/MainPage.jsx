@@ -1,16 +1,29 @@
 import React, { useRef, useState } from "react";
 import logo from "../../assets/PlanZlogo.png";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import MyCalendar from "../features/MyCalendar";
 import TodoList from "../features/TodoList";
 import Editor from "../features/Editor";
 import Indicator from "../features/Indicator";
+
+// 아래에서 위로 + 투명도 → 천천히 보여지게
+const slideUp = keyframes`
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
 
 const MainContainer = styled.div`
   margin: auto;
   padding: 10vh 0px;
   display: flex;
   justify-content: center;
+  animation: ${slideUp} 1s ease-out forwards;
 `;
 
 const Row = styled.div`
