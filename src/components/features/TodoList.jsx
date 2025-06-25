@@ -1,5 +1,33 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import styled from "styled-components";
+
+const ScrollWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 35vh;
+  overflow-y: auto;
+  padding: 5px;
+  border-radius: 10px;
+
+  /* 스크롤 바 얇고 깔끔하게 */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+`;
 
 const TodoList = ({ todos, date, onUpdate, onDelete }) => {
   const filteredTodos = todos
@@ -12,25 +40,21 @@ const TodoList = ({ todos, date, onUpdate, onDelete }) => {
     });
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-      }}
-    >
-      {filteredTodos.length > 0 ? (
-        filteredTodos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onUpdate={onUpdate}
-            onDelete={onDelete}
-          />
-        ))
-      ) : (
-        <div>todo값이 없습니다!</div>
-      )}
+    <div>
+      <ScrollWrapper>
+        {filteredTodos.length > 0 ? (
+          filteredTodos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
+            />
+          ))
+        ) : (
+          <div>todo값이 없습니다!</div>
+        )}
+      </ScrollWrapper>
     </div>
   );
 };

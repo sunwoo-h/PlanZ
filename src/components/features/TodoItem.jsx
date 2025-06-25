@@ -8,7 +8,7 @@ const Row = styled.div`
 const TodoBox = styled.div`
   border-radius: 10px;
   background-color: #ffffff;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   padding: 15px;
   border: none;
 `;

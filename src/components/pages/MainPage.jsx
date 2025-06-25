@@ -88,7 +88,7 @@ const MainPage = () => {
             </Column>
             <Column>
               <GlassCard style={{ minHeight: "51%", minWidth: "40vw" }}>
-                <div>
+                <div style={{ fontWeight: "bold" }}>
                   {`${date.getFullYear()}년 ${
                     date.getMonth() + 1
                   }월 ${date.getDate()}일의 TodoList`}

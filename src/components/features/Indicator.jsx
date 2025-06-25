@@ -50,7 +50,7 @@ const Indicator = ({ todos, date }) => {
 
   return (
     <div>
-      <Row style={{ gap: "20px" }}>
+      <Row style={{ gap: "20px", minWidth: "600px" }}>
         <GlassCard>
           <div style={{ textAlign: "center", fontWeight: "bold" }}>
             남은 할 일
