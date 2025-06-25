@@ -72,6 +72,10 @@ const MainPage = () => {
     );
   };
 
+  const onDelete = (targetId) => {
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
+
   return (
     <div>
       <MainContainer>
@@ -98,7 +102,12 @@ const MainPage = () => {
                 {`${date.getFullYear()}년 ${
                   date.getMonth() + 1
                 }월 ${date.getDate()}일의 TodoList`}
-                <TodoList todos={todos} date={date} onUpdate={onUpdate} />
+                <TodoList
+                  todos={todos}
+                  date={date}
+                  onUpdate={onUpdate}
+                  onDelete={onDelete}
+                />
               </GlassCard>
               <Row style={{ gap: "20px" }}>
                 <GlassCard>

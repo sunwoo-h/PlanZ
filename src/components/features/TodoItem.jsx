@@ -27,7 +27,7 @@ const SmallButton = styled.div`
   font-size: 0.8rem;
 `;
 
-const TodoItem = ({ todo, onUpdate }) => {
+const TodoItem = ({ todo, onUpdate, onDelete }) => {
   return (
     <div>
       {todo.isdone === false ? (
@@ -48,7 +48,9 @@ const TodoItem = ({ todo, onUpdate }) => {
               >
                 완료
               </SmallButton>
-              <SmallButton color="white">삭제</SmallButton>
+              <SmallButton onClick={() => onDelete(todo.id)} color="white">
+                삭제
+              </SmallButton>
             </Row>
           </Row>
         </TodoBox>
@@ -62,7 +64,9 @@ const TodoItem = ({ todo, onUpdate }) => {
           >
             {todo.content}
             <Row style={{ gap: "10px" }}>
-              <SmallButton color="white">삭제</SmallButton>
+              <SmallButton onClick={() => onDelete(todo.id)} color="white">
+                삭제
+              </SmallButton>
             </Row>
           </Row>
         </TodoBox>
