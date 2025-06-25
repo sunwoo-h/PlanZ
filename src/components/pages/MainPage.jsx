@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../../assets/PlanZlogo.png";
 import styled from "styled-components";
 import Button from "../ui/Button";
-import MyCalendar from "../ui/MyCalendar";
+import MyCalendar from "../features/MyCalendar";
 
 const MainContainer = styled.div`
   margin: auto;
