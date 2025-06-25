@@ -28,7 +28,9 @@ const StyledButton = styled.div`
   font-size: 0.8rem;
 `;
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, date }) => {
+  const filteredTodos = todos.filter((todo) => date === todo.date);
+
   return (
     <div
       style={{
@@ -37,9 +39,11 @@ const TodoList = ({ todos }) => {
         gap: "20px",
       }}
     >
-      {todos.map((todo) => {
-        return <TodoItem todo={todo}></TodoItem>;
-      })}
+      {filteredTodos.length > 0 ? (
+        filteredTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+      ) : (
+        <div>todo값이 없습니다!</div>
+      )}
     </div>
   );
 };

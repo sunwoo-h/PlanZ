@@ -59,6 +59,7 @@ const MainPage = () => {
       id: idRef.current++,
       isdone: false,
       content: content,
+      date: date,
     };
 
     setTodos([newTodo, ...todos]);
@@ -90,7 +91,7 @@ const MainPage = () => {
                 {`${date.getFullYear()}년 ${
                   date.getMonth() + 1
                 }월 ${date.getDate()}일의 TodoList`}
-                <TodoList todos={todos} />
+                <TodoList todos={todos} date={date} />
               </GlassCard>
               <Row style={{ gap: "20px" }}>
                 <GlassCard>
