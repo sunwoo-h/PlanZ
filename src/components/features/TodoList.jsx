@@ -16,7 +16,7 @@ const TodoList = ({ todos, date, onUpdate, onDelete }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "20px",
+        gap: "10px",
       }}
     >
       {filteredTodos.length > 0 ? (
