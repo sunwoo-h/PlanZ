@@ -21,7 +21,6 @@ const MyCalendar = ({ date, setDate }) => {
         prev2Label={null}
         showNeighboringMonth={false}
       />
-      <p>선택된 날짜: {date.toLocaleDateString()}</p>
     </div>
   );
 };

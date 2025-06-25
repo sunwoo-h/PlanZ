@@ -38,11 +38,6 @@ const GlassCard = styled.div`
   );
 `;
 
-const BigNumber = styled.div`
-  text-align: center;
-  font-size: 70px;
-`;
-
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
   const [todos, setTodos] = useState([]);
@@ -73,9 +68,9 @@ const MainPage = () => {
   return (
     <div>
       <MainContainer>
-        <Column>
+        <Column style={{ gap: "30px" }}>
           <Row style={{ justifyContent: "space-between" }}>
-            <img style={{ width: "100px" }} src={logo} alt="PlanZ 로고" />
+            <img style={{ width: "110px" }} src={logo} alt="PlanZ 로고" />
             <div>UserID님 안녕하세요!</div>
           </Row>
           <Row
@@ -84,7 +79,7 @@ const MainPage = () => {
             }}
           >
             <Column>
-              <GlassCard style={{ textAlign: "center" }}>
+              <GlassCard>
                 <MyCalendar date={date} setDate={setDate} />
               </GlassCard>
               <GlassCard>
@@ -92,7 +87,7 @@ const MainPage = () => {
               </GlassCard>
             </Column>
             <Column>
-              <GlassCard>
+              <GlassCard style={{ minHeight: "51%", minWidth: "40vw" }}>
                 {`${date.getFullYear()}년 ${
                   date.getMonth() + 1
                 }월 ${date.getDate()}일의 TodoList`}

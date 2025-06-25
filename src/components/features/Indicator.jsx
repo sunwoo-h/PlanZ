@@ -18,6 +18,9 @@ const GlassCard = styled.div`
     rgba(255, 255, 255, 0) 50%,
     rgba(255, 255, 255, 0.7) 100%
   );
+
+  width: 100%;
+  height: 100%;
 `;
 
 const BigNumber = styled.div`

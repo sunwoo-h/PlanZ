@@ -48,7 +48,7 @@ const Editor = ({ onCreate }) => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <InputBox
         ref={contentRef}
         value={content}
