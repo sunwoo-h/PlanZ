@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/PlanZlogo.png";
 import styled from "styled-components";
 import Button from "../ui/Button";
+import MyCalendar from "../ui/MyCalendar";
 
 const MainContainer = styled.div`
   margin: auto;
@@ -75,10 +76,7 @@ const BigNumber = styled.div`
 `;
 
 const MainPage = () => {
-  let today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const date = today.getDate();
+  const [date, setDate] = useState(new Date()); // 현재 날짜
 
   return (
     <div>
@@ -95,7 +93,7 @@ const MainPage = () => {
           >
             <Column>
               <GlassCard style={{ textAlign: "center" }}>
-                달력들어갈예정
+                <MyCalendar date={date} setDate={setDate} />
               </GlassCard>
 
               <GlassCard>
@@ -105,7 +103,9 @@ const MainPage = () => {
             </Column>
             <Column>
               <GlassCard>
-                {`${year}년 ${month}월 ${date}일의 TodoList`}
+                {`${date.getFullYear()}년 ${
+                  date.getMonth() + 1
+                }월 ${date.getDate()}일의 TodoList`}
                 <TodoBox>
                   <Row
                     style={{

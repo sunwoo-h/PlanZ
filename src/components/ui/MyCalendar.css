@@ -1,0 +1,99 @@
+/* 전체 캘린더 */
+.react-calendar {
+  border: none;
+  width: 100%;
+  max-width: 350px;
+  background: transparent;
+}
+
+/* 상단 년/월 네비게이션 */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.react-calendar__navigation__label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* 요일 헤더 */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* 요일 셀 스타일 */
+.react-calendar__month-view__weekdays__weekday {
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #444;
+}
+
+/* 포커스(클릭직후) 스타일 제거 (파란 테두리나 배경) */
+.react-calendar__tile:focus {
+  background: black !important;
+  outline: none !important;
+}
+
+/* 선택된 날짜 */
+.react-calendar__tile--active {
+  background: #000 !important;
+  color: white !important;
+  border-radius: 10px;
+}
+
+/* 요일 밑줄 제거 */
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+/* 날짜 타일 */
+.react-calendar__tile {
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.react-calendar__tile:enabled:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 오늘 날짜 표시 */
+.react-calendar__tile--now {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-weight: bold;
+  color: black;
+}
+
+.saturday {
+  color: blue !important;
+}
+
+/* 기본 navigation button hover 제거 */
+.react-calendar__navigation button:hover {
+  background-color: transparent !important;
+}
+
+/* 클릭 시 배경 제거 */
+.react-calendar__navigation button:focus {
+  background-color: transparent !important;
+}
