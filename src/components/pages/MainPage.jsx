@@ -122,10 +122,9 @@ const MainPage = () => {
     }
   };
 
-  console.log(todos);
+  console.log("todos를 출력해보자", todos);
+  console.log("date 객체를 출력해보자", date);
 
-  console.log(date);
-  console.log(isoDate);
   return (
     <div>
       <MainContainer>
