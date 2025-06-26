@@ -87,7 +87,7 @@ const MainPage = () => {
   // date를 ISO 형식으로 변환
   const isoDate = DateTime.fromJSDate(date).setZone("Asia/Seoul").toISO();
 
-  // 투두리스트 Create 구현
+  // 투두리스트 Create
   const onCreate = async (content, date) => {
     try {
       // date를 ISO 형식으로 변환
@@ -118,8 +118,15 @@ const MainPage = () => {
     );
   };
 
-  const onDelete = (targetId) => {
-    setTodos(todos.filter((todo) => todo.todo_id !== targetId));
+  // 투두리스트 Delete
+  const onDelete = async (targetId) => {
+    try {
+      await axios.delete(`${BASE_URL}/api/todos/${user_id}/${targetId}`);
+      setTodos(todos.filter((todo) => todo.todo_id !== targetId));
+      console.log(`삭제 성공: todo_id = ${targetId}`);
+    } catch (error) {
+      console.error(`DELETE 실패: todo_id = ${targetId}`, error);
+    }
   };
 
   console.log(todos);
