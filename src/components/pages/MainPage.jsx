@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/PlanZlogo.png";
 import styled, { keyframes } from "styled-components";
 import MyCalendar from "../features/MyCalendar";
@@ -57,6 +57,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL; // VITE_BASE_URL 불러오기
 
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
+
   const [todos, setTodos] = useState([]);
 
   const location = useLocation();
@@ -81,18 +82,21 @@ const MainPage = () => {
     fetchTodos();
   }, [user_id, date]);
 
-  const idRef = useRef(todos.length > 0 ? todos[todos.length - 1].todo_id : 0);
-
-  const onCreate = (content) => {
-    const newTodo = {
-      todo_id: idRef.current++,
-      user: username,
-      date: date,
-
-      content: content,
-      is_checked: false,
-    };
-    setTodos([newTodo, ...todos]);
+  const onCreate = async (content) => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/todos/${user_id}`, // ✅ 여기에 실제 요청 URL
+        {
+          date: date,
+          content: content,
+        }
+      );
+      const newTodo = response.data;
+      setTodos([newTodo, ...todos]);
+      console.log("POST 성공:", response.data);
+    } catch (error) {
+      console.error("POST 실패:", error);
+    }
   };
 
   const onUpdate = (targetId) => {
