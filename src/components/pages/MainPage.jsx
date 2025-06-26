@@ -5,6 +5,7 @@ import MyCalendar from "../features/MyCalendar";
 import TodoList from "../features/TodoList";
 import Editor from "../features/Editor";
 import Indicator from "../features/Indicator";
+import { useLocation } from "react-router-dom";
 
 // 아래에서 위로 + 투명도 → 천천히 보여지게
 const slideUp = keyframes`
@@ -56,6 +57,9 @@ const MainPage = () => {
   const [todos, setTodos] = useState([]);
   const idRef = useRef(0);
 
+  const location = useLocation();
+  const username = location.state?.username;
+
   const onCreate = (content) => {
     const newTodo = {
       id: idRef.current++,
@@ -84,7 +88,9 @@ const MainPage = () => {
         <Column style={{ gap: "30px" }}>
           <Row style={{ justifyContent: "space-between" }}>
             <img style={{ width: "110px" }} src={logo} alt="PlanZ 로고" />
-            <div>UserID님 안녕하세요!</div>
+            <div>
+              {username ? `${username}님 환영합니다!` : "로그인 정보 없음"}
+            </div>
           </Row>
           <Row
             style={{
