@@ -42,9 +42,9 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
     <div>
       <ScrollWrapper>
         {filteredTodos.length > 0 ? (
-          filteredTodos.map((todo) => (
+          filteredTodos.map((todo, index) => (
             <TodoItem
-              key={todo.todo_id}
+              key={index}
               todo={todo}
               onUpdate={onUpdate}
               onDelete={onDelete}

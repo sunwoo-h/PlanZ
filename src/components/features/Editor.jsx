@@ -15,7 +15,7 @@ const InputBox = styled.textarea`
   width: 100%;
 `;
 
-const Editor = ({ onCreate }) => {
+const Editor = ({ onCreate, date }) => {
   const [content, setContent] = useState("");
   const contentRef = useRef();
   const isComposingRef = useRef(false); // 한글 조합 중 여부 확인
@@ -33,7 +33,7 @@ const Editor = ({ onCreate }) => {
         return;
       } else {
         e.preventDefault();
-        onCreate(content);
+        onCreate(content, date);
         setContent("");
       }
     }
@@ -64,7 +64,7 @@ const Editor = ({ onCreate }) => {
             contentRef.current.focus();
             return;
           } else {
-            onCreate(content);
+            onCreate(content, date);
             setContent("");
           }
         }}

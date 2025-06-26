@@ -7,6 +7,7 @@ import Editor from "../features/Editor";
 import Indicator from "../features/Indicator";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import { DateTime } from "luxon";
 
 // 아래에서 위로 + 투명도 → 천천히 보여지게
 const slideUp = keyframes`
@@ -65,6 +66,7 @@ const MainPage = () => {
 
   const { user_id } = useParams();
 
+  // 투두리스트 Read 구현
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -82,12 +84,19 @@ const MainPage = () => {
     fetchTodos();
   }, [user_id, date]);
 
-  const onCreate = async (content) => {
+  // date를 ISO 형식으로 변환
+  const isoDate = DateTime.fromJSDate(date).setZone("Asia/Seoul").toISO();
+
+  // 투두리스트 Create 구현
+  const onCreate = async (content, date) => {
     try {
+      // date를 ISO 형식으로 변환
+      const isoDate = DateTime.fromJSDate(date).setZone("Asia/Seoul").toISO();
+
       const response = await axios.post(
         `${BASE_URL}/api/todos/${user_id}`, // ✅ 여기에 실제 요청 URL
         {
-          date: date,
+          date: isoDate,
           content: content,
         }
       );
@@ -115,6 +124,8 @@ const MainPage = () => {
 
   console.log(todos);
 
+  console.log(date);
+  console.log(isoDate);
   return (
     <div>
       <MainContainer>
@@ -135,7 +146,7 @@ const MainPage = () => {
                 <MyCalendar date={date} setDate={setDate} />
               </GlassCard>
               <GlassCard>
-                <Editor onCreate={onCreate} />
+                <Editor onCreate={onCreate} date={date} />
               </GlassCard>
             </Column>
             <Column>
