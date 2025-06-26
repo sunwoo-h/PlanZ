@@ -35,21 +35,23 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
     .sort((a, b) => {
       // isdone이 false인 것이 먼저 오게
       if (a.is_checked === b.is_checked) return 0;
-      return a.is_checked ? 1 : -1;
+      return a.is_checked ? -1 : 1;
     });
 
   return (
     <div>
       <ScrollWrapper>
         {filteredTodos.length > 0 ? (
-          filteredTodos.map((todo, index) => (
-            <TodoItem
-              key={index}
-              todo={todo}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-            />
-          ))
+          filteredTodos
+            .reverse()
+            .map((todo, index) => (
+              <TodoItem
+                key={index}
+                todo={todo}
+                onUpdate={onUpdate}
+                onDelete={onDelete}
+              />
+            ))
         ) : (
           <div>todo값이 없습니다!</div>
         )}

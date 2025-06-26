@@ -7,7 +7,6 @@ import Editor from "../features/Editor";
 import Indicator from "../features/Indicator";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
-import { DateTime } from "luxon";
 
 // 아래에서 위로 + 투명도 → 천천히 보여지게
 const slideUp = keyframes`
@@ -84,24 +83,18 @@ const MainPage = () => {
     fetchTodos();
   }, [user_id, date]);
 
-  // date를 ISO 형식으로 변환
-  const isoDate = DateTime.fromJSDate(date).setZone("Asia/Seoul").toISO();
-
   // 투두리스트 Create
   const onCreate = async (content, date) => {
     try {
-      // date를 ISO 형식으로 변환
-      const isoDate = DateTime.fromJSDate(date).setZone("Asia/Seoul").toISO();
-
       const response = await axios.post(
         `${BASE_URL}/api/todos/${user_id}`, // ✅ 여기에 실제 요청 URL
         {
-          date: isoDate,
+          date: date,
           content: content,
         }
       );
       const newTodo = response.data;
-      setTodos([newTodo, ...todos]);
+      setTodos([...todos, newTodo]);
       console.log("POST 성공:", response.data);
     } catch (error) {
       console.error("POST 실패:", error);
