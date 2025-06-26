@@ -1,6 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
+import sadzzall from "../../assets/sadzzal.png";
 
 const ScrollWrapper = styled.div`
   display: flex;
@@ -44,16 +45,30 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
         {filteredTodos.length > 0 ? (
           filteredTodos
             .reverse()
-            .map((todo, index) => (
+            .map((todo) => (
               <TodoItem
-                key={index}
+                key={todo.todo_id}
                 todo={todo}
                 onUpdate={onUpdate}
                 onDelete={onDelete}
               />
             ))
         ) : (
-          <div>todo값이 없습니다!</div>
+          <div
+            style={{
+              display: "flex ",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <img
+              style={{ width: "38%", borderRadius: "10px" }}
+              src={sadzzall}
+              alt="슬픈 짤"
+            />
+            <div>할 일을 추가해 주세요</div>
+          </div>
         )}
       </ScrollWrapper>
     </div>
