@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../../assets/PlanZlogo.png";
 import styled, { keyframes } from "styled-components";
 import MyCalendar from "../features/MyCalendar";
 import TodoList from "../features/TodoList";
 import Editor from "../features/Editor";
 import Indicator from "../features/Indicator";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
 
 // 아래에서 위로 + 투명도 → 천천히 보여지게
 const slideUp = keyframes`
@@ -52,6 +53,8 @@ const GlassCard = styled.div`
   );
 `;
 
+const BASE_URL = import.meta.env.VITE_BASE_URL; // VITE_BASE_URL 불러오기
+
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
   const [todos, setTodos] = useState([]);
@@ -59,6 +62,24 @@ const MainPage = () => {
 
   const location = useLocation();
   const username = location.state?.username;
+
+  const { user_id } = useParams();
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get(
+          `${BASE_URL}/api/todos/${user_id}?month=${
+            date.getMonth() + 1
+          }&day=${date.getDate()}`
+        );
+        console.log("받은 데이터:", response.data);
+      } catch (error) {
+        console.error("GET 요청 실패:", error);
+      }
+    };
+    fetchTodos();
+  }, [user_id, date]);
 
   const onCreate = (content) => {
     const newTodo = {
