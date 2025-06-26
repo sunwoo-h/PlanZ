@@ -87,7 +87,7 @@ const MainPage = () => {
   const onCreate = async (content, date) => {
     try {
       const response = await axios.post(
-        `${BASE_URL}/api/todos/${user_id}`, // ✅ 여기에 실제 요청 URL
+        `${BASE_URL}/api/todos/${user_id}/`, // ✅ 여기에 실제 요청 URL
         {
           date: date,
           content: content,
@@ -101,20 +101,66 @@ const MainPage = () => {
     }
   };
 
-  const onUpdate = (targetId) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.todo_id === targetId
-          ? { ...todo, is_checked: !todo.is_checked }
-          : todo
-      )
-    );
+  // const onUpdate = (targetId) => {
+  //   setTodos(
+  //     todos.map((todo) =>
+  //       todo.todo_id === targetId
+  //         ? { ...todo, is_checked: !todo.is_checked }
+  //         : todo
+  //     )
+  //   );
+  // };
+
+  // const onUpdate = async (targetId) => {
+  //   try {
+  //     const response = await axios.patch(
+  //       `${BASE_URL}/api/todos/${user_id}/${targetId}/check/`,
+  //       {
+  //         is_checked: true,
+  //       }
+  //     );
+  //     setTodos(
+  //       todos.map((todo) =>
+  //         todo.todo_id === targetId
+  //           ? { ...todo, is_checked: !todo.is_checked }
+  //           : todo
+  //       )
+  //     );
+  //     console.log(`UPDATE 성공: todo_id = ${targetId}`);
+  //   } catch (error) {
+  //     console.error(`UPDATE 실패: todo_id = ${targetId}`, error);
+  //   }
+  // };
+
+  const onUpdate = async (targetId) => {
+    const targetTodo = todos.find((todo) => todo.todo_id === targetId);
+    if (!targetTodo) return;
+
+    const newChecked = !targetTodo.is_checked;
+
+    try {
+      const response = await axios.patch(
+        `${BASE_URL}/api/todos/${user_id}/${targetId}/check/`,
+        { is_checked: newChecked }
+      );
+
+      const updatedTodo = response.data;
+
+      // 응답으로 받은 todo 객체를 todos 리스트에 반영
+      setTodos(
+        todos.map((todo) => (todo.todo_id === targetId ? updatedTodo : todo))
+      );
+
+      console.log(`UPDATE 성공: todo_id = ${targetId}`, updatedTodo);
+    } catch (error) {
+      console.error(`UPDATE 실패: todo_id = ${targetId}`, error);
+    }
   };
 
   // 투두리스트 Delete
   const onDelete = async (targetId) => {
     try {
-      await axios.delete(`${BASE_URL}/api/todos/${user_id}/${targetId}`);
+      await axios.delete(`${BASE_URL}/api/todos/${user_id}/${targetId}/`);
       setTodos(todos.filter((todo) => todo.todo_id !== targetId));
       console.log(`삭제 성공: todo_id = ${targetId}`);
     } catch (error) {
