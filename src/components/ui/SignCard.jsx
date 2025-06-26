@@ -55,7 +55,17 @@ const SignCard = ({
   WhiteMention,
   onBlackClick,
   onWhiteClick,
+  formData,
+  setFormData,
 }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <div>
       <MainContainer>
@@ -68,9 +78,20 @@ const SignCard = ({
           <div style={{ textAlign: "center", fontSize: "30px" }}>{title}</div>
           <InputWrapper>
             아이디
-            <InputBox placeholder="아이디를 입력하세요." />
+            <InputBox
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="아이디를 입력하세요."
+            />
             비밀번호
-            <InputBox placeholder="비밀번호를 입력하세요." />
+            <InputBox
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="비밀번호를 입력하세요."
+            />
           </InputWrapper>
           <ButtonWrapper>
             <Button
