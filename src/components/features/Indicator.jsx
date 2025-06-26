@@ -28,19 +28,17 @@ const BigNumber = styled.div`
   font-size: 70px;
 `;
 
-const Indicator = ({ todos, date }) => {
-  const filteredTodos = todos.filter((todo) => date === todo.date); // 선택한 date의 todo만 필터링
-
+const Indicator = ({ todos }) => {
   const leftTodos = () => {
-    return filteredTodos.filter((todo) => !todo.isdone).length;
+    return todos.filter((todo) => !todo.is_checked).length;
   };
 
   const completeTodos = () => {
-    return filteredTodos.filter((todo) => todo.isdone).length;
+    return todos.filter((todo) => todo.is_checked).length;
   };
 
   const achivementRate = () => {
-    const total = filteredTodos.length;
+    const total = todos.length;
     const completed = completeTodos();
 
     if (total === 0) return 0;

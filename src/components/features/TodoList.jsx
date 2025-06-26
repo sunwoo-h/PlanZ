@@ -29,14 +29,13 @@ const ScrollWrapper = styled.div`
   }
 `;
 
-const TodoList = ({ todos, date, onUpdate, onDelete }) => {
+const TodoList = ({ todos, onUpdate, onDelete }) => {
   const filteredTodos = todos
-    .filter((todo) => date === todo.date) // 선택한 date의 todo만 필터링
     .slice() // 원본 보호
     .sort((a, b) => {
       // isdone이 false인 것이 먼저 오게
-      if (a.isdone === b.isdone) return 0;
-      return a.isdone ? 1 : -1;
+      if (a.is_checked === b.is_checked) return 0;
+      return a.is_checked ? 1 : -1;
     });
 
   return (
@@ -45,7 +44,7 @@ const TodoList = ({ todos, date, onUpdate, onDelete }) => {
         {filteredTodos.length > 0 ? (
           filteredTodos.map((todo) => (
             <TodoItem
-              key={todo.id}
+              key={todo.todo_id}
               todo={todo}
               onUpdate={onUpdate}
               onDelete={onDelete}

@@ -30,7 +30,7 @@ const SmallButton = styled.div`
 const TodoItem = ({ todo, onUpdate, onDelete }) => {
   return (
     <div>
-      {todo.isdone === false ? (
+      {todo.is_checked === false ? (
         <TodoBox>
           <Row
             style={{
@@ -42,13 +42,13 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
             <Row style={{ gap: "10px" }}>
               <SmallButton
                 onClick={() => {
-                  onUpdate(todo.id);
+                  onUpdate(todo.todo_id);
                 }}
                 color="black"
               >
                 완료
               </SmallButton>
-              <SmallButton onClick={() => onDelete(todo.id)} color="white">
+              <SmallButton onClick={() => onDelete(todo.todo_id)} color="white">
                 삭제
               </SmallButton>
             </Row>
@@ -64,7 +64,7 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
           >
             {todo.content}
             <Row style={{ gap: "10px" }}>
-              <SmallButton onClick={() => onDelete(todo.id)} color="white">
+              <SmallButton onClick={() => onDelete(todo.todo_id)} color="white">
                 삭제
               </SmallButton>
             </Row>

@@ -58,7 +58,6 @@ const BASE_URL = import.meta.env.VITE_BASE_URL; // VITE_BASE_URL 불러오기
 const MainPage = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜
   const [todos, setTodos] = useState([]);
-  const idRef = useRef(0);
 
   const location = useLocation();
   const username = location.state?.username;
@@ -74,6 +73,7 @@ const MainPage = () => {
           }&day=${date.getDate()}`
         );
         console.log("받은 데이터:", response.data);
+        setTodos(response.data);
       } catch (error) {
         console.error("GET 요청 실패:", error);
       }
@@ -81,12 +81,16 @@ const MainPage = () => {
     fetchTodos();
   }, [user_id, date]);
 
+  const idRef = useRef(todos.length > 0 ? todos[todos.length - 1].todo_id : 0);
+
   const onCreate = (content) => {
     const newTodo = {
-      id: idRef.current++,
-      isdone: false,
-      content: content,
+      todo_id: idRef.current++,
+      user: username,
       date: date,
+
+      content: content,
+      is_checked: false,
     };
     setTodos([newTodo, ...todos]);
   };
@@ -94,14 +98,18 @@ const MainPage = () => {
   const onUpdate = (targetId) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === targetId ? { ...todo, isdone: !todo.isdone } : todo
+        todo.todo_id === targetId
+          ? { ...todo, is_checked: !todo.is_checked }
+          : todo
       )
     );
   };
 
   const onDelete = (targetId) => {
-    setTodos(todos.filter((todo) => todo.id !== targetId));
+    setTodos(todos.filter((todo) => todo.todo_id !== targetId));
   };
+
+  console.log(todos);
 
   return (
     <div>
@@ -135,12 +143,11 @@ const MainPage = () => {
                 </div>
                 <TodoList
                   todos={todos}
-                  date={date}
                   onUpdate={onUpdate}
                   onDelete={onDelete}
                 />
               </GlassCard>
-              <Indicator todos={todos} date={date} />
+              <Indicator todos={todos} />
             </Column>
           </Row>
         </Column>
