@@ -60,7 +60,7 @@ const MainPage = () => {
 
   const [todos, setTodos] = useState([]);
 
-  const location = useLocation();
+  const location = useLocation(); // 유저 이름 불러오기 위한 hook
   const username = location.state?.username;
 
   const { user_id } = useParams();
@@ -100,37 +100,6 @@ const MainPage = () => {
       console.error("POST 실패:", error);
     }
   };
-
-  // const onUpdate = (targetId) => {
-  //   setTodos(
-  //     todos.map((todo) =>
-  //       todo.todo_id === targetId
-  //         ? { ...todo, is_checked: !todo.is_checked }
-  //         : todo
-  //     )
-  //   );
-  // };
-
-  // const onUpdate = async (targetId) => {
-  //   try {
-  //     const response = await axios.patch(
-  //       `${BASE_URL}/api/todos/${user_id}/${targetId}/check/`,
-  //       {
-  //         is_checked: true,
-  //       }
-  //     );
-  //     setTodos(
-  //       todos.map((todo) =>
-  //         todo.todo_id === targetId
-  //           ? { ...todo, is_checked: !todo.is_checked }
-  //           : todo
-  //       )
-  //     );
-  //     console.log(`UPDATE 성공: todo_id = ${targetId}`);
-  //   } catch (error) {
-  //     console.error(`UPDATE 실패: todo_id = ${targetId}`, error);
-  //   }
-  // };
 
   const onUpdate = async (targetId) => {
     const targetTodo = todos.find((todo) => todo.todo_id === targetId);
