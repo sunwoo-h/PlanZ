@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/PlanZlogo.png";
+import logo from "../../assets/PlanZLogo.png";
 import styled, { keyframes } from "styled-components";
 import MyCalendar from "../features/MyCalendar";
 import TodoList from "../features/TodoList";
